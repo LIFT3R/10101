@@ -26,3 +26,27 @@ class Launcher
       File.extname(file_name) .gsub( /^\./, '' ).downcase
     end
   end
+
+def help
+  print "
+  you must pass in the path to the file to launch.
+
+  Usage: #{__FILE__} target_file
+"
+
+end
+
+if ARGV.empty?
+  help
+  exit
+else
+  app_map = {
+    'html' => 'firefox',
+    'rb' => 'gvim',
+    'jpg' => 'gimp'
+  }
+
+  l = Launcher.new app_map
+  target = ARGV.join' '
+  l.run.target
+end
